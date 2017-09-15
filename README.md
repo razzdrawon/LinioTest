@@ -1,2 +1,2 @@
 # LinioTest
-favorite products list
+favorite products list using MVVM, Retrofit2, Glide and more...
