@@ -8,6 +8,7 @@ import android.databinding.ObservableList;
 import android.view.View;
 
 import com.razzdrawon.liniotest.LinioTestApplication;
+import com.razzdrawon.liniotest.R;
 import com.razzdrawon.liniotest.data.FavoritesFactory;
 import com.razzdrawon.liniotest.data.FavoritesService;
 import com.razzdrawon.liniotest.model.Favorite;
@@ -28,13 +29,13 @@ import io.reactivex.functions.Consumer;
 public class FavoritesViewModel extends Observable {
 
 
-    public final ObservableList<Favorite> items = new ObservableArrayList<>();
+    public final ObservableList<Favorite> favoriteList = new ObservableArrayList<>();
     public final ObservableList<Product> productList = new ObservableArrayList<>();
 
     public final ObservableField<String> favsTitle = new ObservableField<>();
     public final ObservableField<String> messageError = new ObservableField<>();
 
-    public ObservableInt favoritesProgress = new ObservableInt(View.VISIBLE);
+    public ObservableInt favoritesProgress;
 
     private Context context;
 
@@ -45,13 +46,16 @@ public class FavoritesViewModel extends Observable {
         updateFavorites();
     }
 
-//    public void onClickFav(View view) {
-//        updateFavorites();
-//    }
+    public void onClickFav(View view) {
+        updateFavorites();
+    }
 
 
     public void updateFavorites() {
-        items.clear();
+        favoriteList.clear();
+        productList.clear();
+        favsTitle.set("");
+
         favoritesProgress.set(View.VISIBLE);
 
         LinioTestApplication favoritesApplication = LinioTestApplication.create(context);
@@ -62,20 +66,18 @@ public class FavoritesViewModel extends Observable {
                 .subscribe(new Consumer<List<Favorite>>() {
                     @Override
                     public void accept(List<Favorite> favs) throws Exception {
-                        items.addAll(favs);
                         List<Product> products = new ArrayList<Product>();
-                        for(Favorite fav : items){
+                        for(Favorite fav : favs){
                             for (Map.Entry<String, Product> entry : fav.getProductMap().entrySet())
                             {
                                 products.add(entry.getValue());
                             }
 
                         }
-
-                        changeProductsDataSet(products);
-
-                        favsTitle.set(items.get(0).getName());
+                        favsTitle.set(String.format(context.getResources().getString(R.string.all_favorites), products.size()));
                         favoritesProgress.set(View.GONE);
+                        changeFavoritesDataSet(favs);
+                        changeProductsDataSet(products);
 
                     }
                 }, new Consumer<Throwable>() {
@@ -87,7 +89,15 @@ public class FavoritesViewModel extends Observable {
     }
 
     private void changeProductsDataSet(List<Product> products) {
+        productList.clear();
         productList.addAll(products);
+        setChanged();
+        notifyObservers();
+    }
+
+    private void changeFavoritesDataSet(List<Favorite> favorites) {
+        favoriteList.clear();
+        favoriteList.addAll(favorites);
         setChanged();
         notifyObservers();
     }
@@ -95,6 +105,10 @@ public class FavoritesViewModel extends Observable {
 
     public ObservableList<Product> getProductList() {
         return productList;
+    }
+
+    public ObservableList<Favorite> getFavoriteList() {
+        return favoriteList;
     }
 
     public void reset() {

@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">LinioTest</string>
     <string name="no_favs_all">You have no Favs!</string>
+    <string name="all_favorites">Todos mis favoritos (%d)</string>
+    <string name="refresh_button">Refresh</string>
 </resources>

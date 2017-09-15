@@ -33,7 +33,6 @@
                     android:id="@+id/image_product"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/nd_ic_no_empty_fav"
                     tools:imageUrl="@{productViewModel.image}" />
 
 
@@ -47,7 +46,6 @@
                         android:id="@+id/icon_linio_plus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/cardview_dark_background"
                         android:visibility="@{productViewModel.isLinioPlusVisibility}"
                         android:src="@{productViewModel.isLinioPlus ? @drawable/nd_ic_plus_30 :@drawable/nd_ic_plus_48_30}" />
 
@@ -55,21 +53,18 @@
                         android:id="@+id/icon_refurbished"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/cardview_dark_background"
                         android:src="@{productViewModel.isRefurbished ? @drawable/nd_ic_refurbished_30 :@drawable/nd_ic_new_30}" />
 
                     <ImageView
                         android:id="@+id/icon_freeShipping"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/cardview_dark_background"
                         android:src="@{productViewModel.isFreeShipping ? @drawable/nd_ic_free_shipping_30 : null}" />
 
                     <ImageView
                         android:id="@+id/icon_imported"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/cardview_dark_background"
                         android:src="@{productViewModel.isImported ? @drawable/nd_ic_international_30 : null}" />
 
 

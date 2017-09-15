@@ -33,14 +33,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/header_padding"
+                android:layout_marginBottom="@dimen/header_padding"
                 android:orientation="horizontal">
 
-                <!--<Button-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:onClick="@{viewmodel::onClickFav}"-->
-                    <!--android:text="Click here" />-->
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded_corners_primary_back"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_size"
+                    android:textStyle="bold"
+                    android:onClick="@{viewmodel::onClickFav}"
+                    android:text="@string/refresh_button" />
 
                 <ProgressBar
                     android:id="@+id/progress_people"
