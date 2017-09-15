@@ -56,7 +56,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductA
         void bindProduct(Product product) {
             if (mItemProductBinding.getProductViewModel() == null) {
                 mItemProductBinding.setProductViewModel(
-                        new ItemProductViewModel(product, itemView.getContext()));
+                        new ItemProductViewModel(product));
             } else {
                 mItemProductBinding.getProductViewModel().setProduct(product);
             }

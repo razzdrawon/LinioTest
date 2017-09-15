@@ -1,17 +1,12 @@
 package com.razzdrawon.liniotest.viewmodel;
 
 import android.content.Context;
-import android.databinding.BaseObservable;
-import android.databinding.Bindable;
 import android.databinding.ObservableArrayList;
-import android.databinding.ObservableArrayMap;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.databinding.ObservableList;
-import android.databinding.ObservableMap;
 import android.view.View;
 
-import com.razzdrawon.liniotest.BR;
 import com.razzdrawon.liniotest.LinioTestApplication;
 import com.razzdrawon.liniotest.data.FavoritesFactory;
 import com.razzdrawon.liniotest.data.FavoritesService;
@@ -33,8 +28,6 @@ import io.reactivex.functions.Consumer;
 public class FavoritesViewModel extends Observable {
 
 
-//    private List<Favorite> items;
-
     public final ObservableList<Favorite> items = new ObservableArrayList<>();
     public final ObservableList<Product> productList = new ObservableArrayList<>();
 
@@ -49,11 +42,12 @@ public class FavoritesViewModel extends Observable {
     public FavoritesViewModel(Context context){
         this.context = context;
         favoritesProgress = new ObservableInt(View.GONE);
-    }
-
-    public void onClickFav(View view) {
         updateFavorites();
     }
+
+//    public void onClickFav(View view) {
+//        updateFavorites();
+//    }
 
 
     public void updateFavorites() {
